@@ -1,0 +1,26 @@
+{
+  "author": "Nathan LaFreniere <quitlahok@gmail.com>",
+  "name": "markitup",
+  "description": "a simple markdown to html converter with syntax highlighting",
+  "version": "0.0.1",
+  "homepage": "https://github.com/nathan-lafreniere/markitup",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/nathan-lafreniere/markitup.git"
+  },
+  "main": "lib/markitup.js",
+  "bin": "bin/markitup",
+  "dependencies": {
+    "marked": "",
+    "jade": "",
+    "optimist": "",
+    "walk": "",
+    "async": "",
+    "hljs": ""
+  }
+  "devDependencies": {},
+  "optionalDependencies": {},
+  "engines": {
+    "node": "*"
+  }
+}
