@@ -7,8 +7,9 @@ var markitup = require('../lib/markitup'),
     argv = require('optimist')
         .usage('Usage: $0 [input file|directory list]')
         .string(['output', 'template'])
-        .describe({ template: 'Template for HTML output', output: 'Output directory' })
-        .alias({ template: 't', input: 'i', output: 'o' })
+        .boolean('unsafe')
+        .describe({ template: 'Template for HTML output', output: 'Output directory', unsafe: 'Allow embedding HTML' })
+        .alias({ template: 't', input: 'i', output: 'o', unsafe: 'u' })
         .check(function (args) { 
             if (args._.length === 0) throw 'Input not specified';
             if (args.o && !path.existsSync(args.o)) throw 'Output directory does not exist';
@@ -20,7 +21,8 @@ var markitup = require('../lib/markitup'),
         .argv;
 
 var outPath = argv.o,
-    template = argv.t;
+    template = argv.t,
+    unsafe = argv.u;
 
 function process_item(name, callback) {
     fs.stat(name, function (err, stats) {
@@ -30,7 +32,7 @@ function process_item(name, callback) {
             if (stats.isFile()) {
                 if (name.match(/\.md$/)) {
                     console.log('processing', name);
-                    markitup.generate_doc(name, outPath, template, function (err, output) {
+                    markitup.generate_doc(name, outPath, template, unsafe, function (err, output) {
                         callback();
                     });
                 } else {
@@ -42,7 +44,7 @@ function process_item(name, callback) {
                 var file = path.join(root, fileStats.name);
                     if (file.match(/\.md$/)) {
                         console.log('processing', file);
-                        markitup.generate_doc(file, outPath, template, function (err, output) {
+                        markitup.generate_doc(file, outPath, template, unsafe, function (err, output) {
                             next();
                         });
                     } else {
