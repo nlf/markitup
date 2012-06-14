@@ -2,7 +2,7 @@
   "author": "Nathan LaFreniere <quitlahok@gmail.com>",
   "name": "markitup",
   "description": "a simple markdown to html converter with syntax highlighting",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "homepage": "https://github.com/nathan-lafreniere/markitup",
   "repository": {
     "type": "git",
