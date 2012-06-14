@@ -32,7 +32,7 @@ function process_item(name, callback) {
             callback(new Error('error opening ' + name));
         } else {
             if (stats.isFile()) {
-                if (name.match(/\.md$/)) {
+                if (name.match(/\.md$|\.markdown$/)) {
                     console.log('processing', name);
                     markitup.generate_doc(name, outPath, template, unsafe, autoPages, function (err, output) {
                         callback();
